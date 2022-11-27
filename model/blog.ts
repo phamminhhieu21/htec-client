@@ -1,13 +1,13 @@
 export interface BlogPost {
   title: string
   url?: string
-  discussionUrl: string
+  discussionUrl?: string
   id?: number
-  bodyHTML: string
+  bodyHTML?: string
   bodyText: string
   createdAt: string
-  lastEdited: string | null
-  authorUrl: authorPost['url']
+  lastEdited?: string | null
+  authorUrl?: authorPost['url']
   authorLogin: authorPost['login']
   authorAvatarUrl: authorPost['avatarUrl']
   tags: string[]
