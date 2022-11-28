@@ -10,13 +10,25 @@ export interface BlogPost {
   authorUrl?: authorPost['url']
   authorLogin: authorPost['login']
   authorAvatarUrl: authorPost['avatarUrl']
-  tags: string[]
+  tags: labelPost[]
 }
+export interface BlogDetail {
+  title: string
+  bodyHTML: string
+  createdAt: string
+  author: {
+    name: string
+    avatar: string
+    url: string
+  }
+}
+
 export interface authorPost {
   url: string
   login: string
   avatarUrl: string
 }
 export interface labelPost {
-  name: string;
+  name?: string | undefined
+  color?: string |  undefined
 }

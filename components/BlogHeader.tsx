@@ -3,9 +3,9 @@ import React from 'react'
 
 interface BlogHeaderProps {
   createdAt: string 
-  authorUrl: string | undefined 
+  authorUrl: string | undefined
   authorLogin: string 
-  authorAvatarUrl: string 
+  authorAvatarUrl: string | undefined
 }
 
 export const BlogHeader: React.FC<BlogHeaderProps> = (props) => {
@@ -13,7 +13,7 @@ export const BlogHeader: React.FC<BlogHeaderProps> = (props) => {
   const createdDate: Date = new Date(createdAt)
   const options : Intl.DateTimeFormatOptions = {year: 'numeric', month: 'long', day: 'numeric'}
   return (
-    <div className="flex">
+    <div className="flex items-start">
       <img
         src={authorAvatarUrl}
         className="rounded-[50%] mb-4 mr-4"

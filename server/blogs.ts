@@ -4,8 +4,8 @@ import {
   GIT_HUB_TOKEN,
   DISCUSSION_CATEGORY_Id,
 } from './../constant/index'
-import {discussionGQL} from './../server/graphQL'
-import {BlogPost, labelPost} from '../model/blog'
+import {discussionGQL , discussionDetailGql} from './../server/graphQL'
+import {BlogPost, labelPost, BlogDetail} from '../model/blog'
 
 export async function getBlogs(): Promise<BlogPost[]> {
   const response = await fetch(API_URL, {
@@ -36,7 +36,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
     const authorUrl = author.url
     const authorLogin = author.login
     const authorAvatarUrl = author.avatarUrl
-    const tags = labels.nodes.map((label: labelPost) => label.name)
+    const tags = labels.nodes.map((label: labelPost) => {label.name , label.color})
     const blog = {
       title,
       url,
@@ -54,4 +54,30 @@ export async function getBlogs(): Promise<BlogPost[]> {
     return blog
   })
   return blogs
+}
+
+export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `token ${GIT_HUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({query: discussionDetailGql(blogId)}),
+  })
+  let res = await response.json()
+  let discussion = res.data.repository.discussion
+  const {
+    author: {url: authorUrl, login: authorName, avatarUrl: authorAvatar},
+    createdAt,
+    title: title,
+    bodyHTML: html,
+  } = discussion
+  const detail = {
+    author: {url: authorUrl, name: authorName, avatar: authorAvatar},
+    createdAt,
+    title,
+    bodyHTML: html,
+  }
+  return detail
 }

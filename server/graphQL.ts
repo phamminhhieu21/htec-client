@@ -18,8 +18,26 @@ export function discussionGQL(categoryId: string | undefined) {
           labels(first: 100) {
             nodes {
               name
+              color
             }
           }
+        }
+      }
+    }
+  }`
+}
+// Single post
+export function discussionDetailGql(postId: number | undefined) {
+  return `{
+    repository(name: "htec-blog", owner: "phamminhhieu21") {
+      discussion(number: ${postId}) {
+        title
+        bodyHTML
+        createdAt
+        author {
+          login
+          url
+          avatarUrl
         }
       }
     }
