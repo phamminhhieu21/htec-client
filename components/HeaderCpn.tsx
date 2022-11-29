@@ -76,7 +76,10 @@ export const HeaderCpn = (props: any) => {
               <p>
                 I&apos;m a<b> Web Developer</b>
               </p>
-              <p>A <b>Developer</b> likes <b>writing</b> and love <b>technology</b></p>
+              <p>
+                A <b>Developer</b> likes <b>writing</b> and love{' '}
+                <b>technology</b>
+              </p>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 export interface BlogPost {
-  id_discussion : string | number | null
+  id_discussion: string | number | null
   title: string
   url?: string
   discussionUrl?: string
@@ -12,14 +12,14 @@ export interface BlogPost {
   authorLogin: authorPost['login']
   authorAvatarUrl: authorPost['avatarUrl']
   tags: string[]
-  labels? : labelPost[]
+  labels?: labelPost[]
 }
 export interface BlogDetail {
-  id_blog : string | number| undefined
+  id_blog: string | number | undefined
   title: string
   bodyHTML: string
   createdAt: string
-  tags : string[]
+  tags: string[]
   author: {
     name: string
     avatar: string
@@ -34,5 +34,5 @@ export interface authorPost {
 }
 export interface labelPost {
   name?: string | undefined
-  color?: string |  undefined
+  color?: string | undefined
 }

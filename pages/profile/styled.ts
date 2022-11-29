@@ -1,4 +1,2 @@
 import styled from 'styled-components'
-export const Wrapped = styled.div`
-
-`
+export const Wrapped = styled.div``

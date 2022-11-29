@@ -48,7 +48,7 @@ export const BlogDetailPage: NextPage = ({
       <title>{title}</title>
       <section className="layout detail-page-custom">
         <div className="max-w-[50%] detail-page-content__custom">
-          <div 
+          <div
             className="navi-back"
             // onClick={() => Router.back()}
           >

@@ -26,7 +26,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
   const discussions = resp.data.repository.discussions.nodes
   const blogs = discussions.map((discussion: any): BlogPost => {
     const {
-      id : id_discussion,
+      id: id_discussion,
       title,
       url: discussionUrl,
       number: id,
@@ -78,7 +78,7 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
     createdAt,
     title: title,
     bodyHTML: html,
-    number :  id_blog,
+    number: id_blog,
     labels,
   } = discussion
   const tags = labels.nodes.map((label: labelPost) => label.name)
@@ -88,7 +88,7 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
     createdAt,
     title,
     bodyHTML: html,
-    tags : tags
+    tags: tags,
   }
   return detail
 }
@@ -108,7 +108,9 @@ export async function getLabels(): Promise<labelPost[]> {
   labels.forEach((label: any) => {
     const tags = label.labels.nodes
     for (const tag of tags) {
-      const check = summaryLabels.find((item: labelPost) => item.name === tag.name)
+      const check = summaryLabels.find(
+        (item: labelPost) => item.name === tag.name
+      )
       if (!check) {
         summaryLabels.push({
           name: tag.name,

@@ -1,13 +1,8 @@
-import {
-  API_URL,
-  GIT_HUB_TOKEN,
-} from './../constant/index'
-import {
-  profileDetail
-} from './../server/graphQL'
+import {API_URL, GIT_HUB_TOKEN} from './../constant/index'
+import {profileDetail} from './../server/graphQL'
 import {Profile} from '../model/profile'
 
-export async function getProfile() : Promise<Profile>  {
+export async function getProfile(): Promise<Profile> {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: {

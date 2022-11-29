@@ -5,19 +5,19 @@ import Router from 'next/router'
 const ButtonBack = () => {
   const Wrapped = styled.div`
     .button-back-custom {
-      font-size : 0.8rem;
-      font-weight : 600;
-      .size-custom{
-        width :  1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      .size-custom {
+        width: 1rem;
       }
     }
   `
   return (
     <Wrapped>
-      <button 
+      <button
         className="inline-flex items-center px-3 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md button-back-custom"
         onClick={() => Router.back()}
-        >
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 size-custom mr-2"

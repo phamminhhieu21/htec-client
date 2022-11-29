@@ -13,7 +13,7 @@ const ProfilePage: NextPage = () => {
         height={8}
         showOnShallow={true}
       />
-      <div className='text-xl font-bold text-center mx-auto my-auto'>
+      <div className="text-xl font-bold text-center mx-auto my-auto">
         <h1>Feature is inprogress develop</h1>
       </div>
     </Wrapped>
