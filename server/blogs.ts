@@ -26,6 +26,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
   const discussions = resp.data.repository.discussions.nodes
   const blogs = discussions.map((discussion: any): BlogPost => {
     const {
+      id : id_discussion,
       title,
       url: discussionUrl,
       number: id,
@@ -42,6 +43,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
     const authorAvatarUrl = author.avatarUrl
     const tags = labels.nodes.map((label: labelPost) => label.name)
     const blog = {
+      id_discussion,
       title,
       url,
       discussionUrl,
@@ -76,12 +78,17 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
     createdAt,
     title: title,
     bodyHTML: html,
+    number :  id_blog,
+    labels,
   } = discussion
+  const tags = labels.nodes.map((label: labelPost) => label.name)
   const detail = {
+    id_blog,
     author: {url: authorUrl, name: authorName, avatar: authorAvatar},
     createdAt,
     title,
     bodyHTML: html,
+    tags : tags
   }
   return detail
 }

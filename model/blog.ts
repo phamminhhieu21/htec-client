@@ -1,4 +1,5 @@
 export interface BlogPost {
+  id_discussion : string | number | null
   title: string
   url?: string
   discussionUrl?: string
@@ -14,9 +15,11 @@ export interface BlogPost {
   labels? : labelPost[]
 }
 export interface BlogDetail {
+  id_blog : string | number| undefined
   title: string
   bodyHTML: string
   createdAt: string
+  tags : string[]
   author: {
     name: string
     avatar: string

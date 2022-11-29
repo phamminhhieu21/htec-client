@@ -26,11 +26,30 @@ export const Wrapped = styled.div`
       height: fit-content;
       border-radius: 20px;
       border: 2px solid #033162c7;
+      .navi-back {
+      }
       .border-custom {
         position: absolute;
         bottom: 4px;
         border: 1px dashed #a8c5ff2b;
-        width: 60%;
+        width: 75%;
+      }
+      .tags {
+        align-items: center;
+        flex-direction: row;
+        width: fit-content;
+        display: flex;
+        border: 1.5px dashed #004d91e0;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        padding: 10px 12px;
+        .lb-tags {
+          margin-right: 3px;
+        }
+        .tag {
+          padding: 0 6px;
+          cursor: pointer;
+        }
       }
     }
   }

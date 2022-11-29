@@ -8,10 +8,8 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import {FooterCpn} from '../components/FooterCpn'
 import {HeaderCpn} from '../components/HeaderCpn'
-import SkeletonCard from '../components/Skeleton'
-import {useRouter} from 'next/router'
-import {sleep} from '../utils/helper'
 import NextNProgress from 'nextjs-progressbar'
+// import {useRouter} from 'next/router'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
@@ -44,7 +42,6 @@ const Home: NextPage = ({
   const [selectedPosition, setSelectedPosition] = useState<number[]>([])
   const [filterWord, setFilterWord] = useState<string[]>([])
   const HomePage = styled.div`
-    /* overflow: hidden; */
     main {
       min-height: 100vh;
       padding-bottom: 45px;
@@ -53,10 +50,9 @@ const Home: NextPage = ({
     }
     .post-custom {
       position: relative;
-      width: 37rem;
-      background-color: #ebf6ffbd;
+      width: 41rem;
+      background-color: #d4e5f3b5;
       &:hover {
-        /* border: 10px solid #e5e5e5; */
         box-shadow: 0 0 10px #e5e5e5;
         background-color: rgb(100 116 139);
       }
@@ -70,9 +66,11 @@ const Home: NextPage = ({
       }
     }
     .effect-custom{
-      transform : scale(1.1);
+      transform : scale(1.2);
       transform 0.3s ease-in-out;
       color: #ffff;
+      border: 1px solid #ddedfad6;
+      box-shadow: 0 0 7px #e5e5e5
     }
   `
 
@@ -100,8 +98,8 @@ const Home: NextPage = ({
   return (
     <HomePage>
       <NextNProgress
-        color="#29D"
-        startPosition={0.9}
+        color="#fd7200cf"
+        startPosition={1.5}
         stopDelayMs={200}
         height={8}
         showOnShallow={true}
@@ -141,7 +139,7 @@ const Home: NextPage = ({
             return (
               <div
                 key={blog.id}
-                className="transition ease-in-out delay-150 bg-neutral-300 hover:-translate-y-1 hover:scale-110 hover:bg-slate-600 duration-200 post-custom max-w-[40em] max-h-[25em] overflow-hidden mx-6 mb-6 text-zinc-800 rounded-lg p-4 hover:text-neutral-300"
+                className="transition ease-in-out delay-150 bg-neutral-300 hover:-translate-y-1 hover:scale-110 hover:bg-slate-600 duration-200 post-custom max-w-[45em] max-h-[25em] overflow-hidden mx-6 mb-6 text-zinc-800 rounded-lg p-4 hover:text-neutral-300"
               >
                 <Link href={`${blog.url}`}>
                   <BlogPreview
@@ -153,6 +151,7 @@ const Home: NextPage = ({
                     authorAvatarUrl={blog.authorAvatarUrl}
                     authorUrl={blog.authorUrl}
                     labels={labels}
+                    id_discussion={blog.id_discussion}
                   />
                 </Link>
               </div>

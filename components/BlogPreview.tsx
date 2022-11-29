@@ -2,7 +2,7 @@ import React from 'react'
 import {BlogPost, labelPost} from './../model/blog'
 import {BlogHeader} from './BlogHeader'
 import styled from 'styled-components'
-
+import TagCpn from './Tags'
 const BlogPreview: React.FC<BlogPost> = (props) => {
   const {
     title,
@@ -17,23 +17,24 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
   console.log(tags)
   const previewText = bodyText.substring(0, 150) + '...'
   const Wrapped = styled.div`
-  .tags-custom{
-    position: relative;
-    .readmore {
-      position : absolute;
-      right: 0;
-      .custom-readmore {
-        font-size: 0.7rem;
-        padding: 3px 6px;
-        background-color: #2884a7;
-        font-weight: 400;
-        .w-custom{
-          width : 0.8rem;
+    .tags-custom {
+      position: relative;
+      display: flex;
+      align-items: center;
+      .readmore {
+        position: absolute;
+        right: 0;
+        .custom-readmore {
+          font-size: 0.7rem;
+          padding: 3px 6px;
+          background-color: #2884a7;
+          font-weight: 400;
+          .w-custom {
+            width: 0.8rem;
+          }
         }
       }
     }
-  }
-    
   `
   return (
     <Wrapped>
@@ -48,19 +49,7 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
         <p className="mt-2">{previewText}</p>
         <div className="flex flex-row gap-2 mt-2 tags-custom">
           {tags.map((tag, index) => {
-            return (
-              <span
-                key={index}
-                className="text-xs background-label text-neutral-300 rounded-lg px-2 py-1"
-                style={{
-                  backgroundColor: `#${
-                    labels?.find((item: labelPost) => item.name === tag)?.color
-                  }`,
-                }}
-              >
-                {tag}
-              </span>
-            )
+            return <TagCpn key={index} tag={tag} labels={labels} />
           })}
           <div className="readmore">
             <a
