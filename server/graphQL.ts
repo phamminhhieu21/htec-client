@@ -43,3 +43,21 @@ export function discussionDetailGql(postId: number | undefined) {
     }
   }`
 }
+export function discussionLabels(categoryId: string | undefined) {
+  return `
+  {
+    repository(name: "htec-blog", owner: "phamminhhieu21") {
+      discussions(first:100, categoryId: "${categoryId}") {
+        nodes {
+          labels(first: 100) {
+            nodes {
+              name
+              color
+            }
+          }
+        }
+      }
+    }
+  }
+  `
+}

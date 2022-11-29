@@ -4,7 +4,11 @@ import {
   GIT_HUB_TOKEN,
   DISCUSSION_CATEGORY_Id,
 } from './../constant/index'
-import {discussionGQL , discussionDetailGql} from './../server/graphQL'
+import {
+  discussionGQL,
+  discussionDetailGql,
+  discussionLabels,
+} from './../server/graphQL'
 import {BlogPost, labelPost, BlogDetail} from '../model/blog'
 
 export async function getBlogs(): Promise<BlogPost[]> {
@@ -36,7 +40,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
     const authorUrl = author.url
     const authorLogin = author.login
     const authorAvatarUrl = author.avatarUrl
-    const tags = labels.nodes.map((label: labelPost) => {label.name , label.color})
+    const tags = labels.nodes.map((label: labelPost) => label.name)
     const blog = {
       title,
       url,
@@ -80,4 +84,31 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
     bodyHTML: html,
   }
   return detail
+}
+
+export async function getLabels(): Promise<labelPost[]> {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      Authorization: `token ${GIT_HUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({query: discussionLabels(DISCUSSION_CATEGORY_Id)}),
+  })
+  let res = await response.json()
+  let labels = res.data.repository.discussions.nodes
+  let summaryLabels: labelPost[] = []
+  labels.forEach((label: any) => {
+    const tags = label.labels.nodes
+    for (const tag of tags) {
+      const check = summaryLabels.find((item: labelPost) => item.name === tag.name)
+      if (!check) {
+        summaryLabels.push({
+          name: tag.name,
+          color: tag.color,
+        })
+      }
+    }
+  })
+  return summaryLabels
 }

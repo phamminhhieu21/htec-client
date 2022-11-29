@@ -9,9 +9,12 @@
     @apply w-screen h-screen overflow-auto flex flex-col items-center bg-zinc-800 text-neutral-300 font-poppins;
   }
   .label {
-    @apply bg-sky-600 px-2 mt-2 font-semibold rounded-xl text-zinc-800;
+    @apply bg-sky-600 px-4 py-[0.17rem] mt-2 font-semibold rounded-xl text-zinc-800;
   }
   .label-selected {
-    @apply bg-sky-800 px-2 mt-2 font-semibold rounded-xl text-neutral-300;
+    @apply bg-sky-800 px-4 py-[0.17rem] mt-2 font-semibold rounded-xl text-neutral-300;
+  }
+  .background-label{
+    @apply bg-sky-800;
   }
 }

@@ -10,7 +10,8 @@ export interface BlogPost {
   authorUrl?: authorPost['url']
   authorLogin: authorPost['login']
   authorAvatarUrl: authorPost['avatarUrl']
-  tags: labelPost[]
+  tags: string[]
+  labels? : labelPost[]
 }
 export interface BlogDetail {
   title: string
