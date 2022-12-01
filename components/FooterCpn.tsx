@@ -1,6 +1,6 @@
 import React from 'react'
 import {Wrapped} from './styles/footerStyled'
-export const FooterCpn = () => {
+const FooterCpn = () => {
   return (
     <Wrapped>
       <div className="py-10 px-4  dark:bg-gray-700 md:flex md:items-center md:justify-between footer-custom">
@@ -85,3 +85,4 @@ export const FooterCpn = () => {
     </Wrapped>
   )
 }
+export default FooterCpn

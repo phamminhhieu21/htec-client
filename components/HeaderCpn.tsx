@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-export const HeaderCpn = (props: any) => {
+const HeaderCpn = (props: any) => {
   const {avatarUrl} = props
   const Wrapped = styled.div`
     .avatar-header {
@@ -87,3 +87,4 @@ export const HeaderCpn = (props: any) => {
     </Wrapped>
   )
 }
+export default HeaderCpn

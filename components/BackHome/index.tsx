@@ -1,5 +1,6 @@
 import React from 'react'
 
-export const BackHome = () => {
+const BackHome = () => {
   return <div>BackHome</div>
 }
+export default BackHome
