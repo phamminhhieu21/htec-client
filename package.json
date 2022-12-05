@@ -18,6 +18,7 @@
     "eslint-config-next": "13.0.5",
     "github-syntax-dark": "^0.5.0",
     "html-react-parser": "^3.0.4",
+    "javascript-time-ago": "^2.5.9",
     "next": "13.0.5",
     "nextjs-progressbar": "^0.0.16",
     "prettier": "^2.8.0",

@@ -1,5 +1,5 @@
 import React from 'react'
-import {BlogPost, labelPost} from './../model/blog'
+import {BlogPost} from './../model/blog'
 import {BlogHeader} from './BlogHeader'
 import styled from 'styled-components'
 import TagCpn from './Tags'
@@ -13,8 +13,9 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
     authorAvatarUrl,
     authorUrl,
     labels,
+    lastEdited
   } = props
-  console.log(tags)
+  console.log("props in blog preview", props)
   const previewText = bodyText.substring(0, 150) + '...'
   const Wrapped = styled.div`
     .tags-custom {
@@ -41,9 +42,11 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
       <section>
         <BlogHeader
           createdAt={createdAt}
+          lastEdited={lastEdited}
           authorUrl={authorUrl}
           authorLogin={authorLogin}
           authorAvatarUrl={authorAvatarUrl}
+          isPreview={true}
         />
         <h2 className="font-bold">{title}</h2>
         <p className="mt-2">{previewText}</p>

@@ -36,6 +36,7 @@ export function discussionDetailGql(postId: number | undefined) {
         title
         bodyHTML
         createdAt
+        lastEditedAt
         author {
           login
           url

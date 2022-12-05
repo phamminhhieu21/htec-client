@@ -3,13 +3,12 @@ import {GetServerSideProps, InferGetServerSidePropsType, NextPage} from 'next'
 import BlogPreview from '../components/BlogPreview'
 import {getBlogs, getLabels} from '../server/blogs'
 import {BlogPost, labelPost} from './../model/blog'
-import {useMemo, useEffect, useState} from 'react'
+import {useMemo, useState} from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import FooterCpn from '../components/FooterCpn'
 import HeaderCpn from '../components/HeaderCpn'
 import NextNProgress from 'nextjs-progressbar'
-// import {useRouter} from 'next/router'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
@@ -146,6 +145,7 @@ const Home: NextPage = ({
                     title={blog.title}
                     bodyText={blog.bodyText}
                     createdAt={blog.createdAt}
+                    lastEdited={blog.lastEdited}
                     tags={blog.tags}
                     authorLogin={blog.authorLogin}
                     authorAvatarUrl={blog.authorAvatarUrl}

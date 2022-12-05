@@ -1,4 +1,3 @@
-// import { API_URL } from "../constant";
 import {
   API_URL,
   GIT_HUB_TOKEN,
@@ -76,6 +75,7 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
   const {
     author: {url: authorUrl, login: authorName, avatarUrl: authorAvatar},
     createdAt,
+    lastEditedAt: lastEdited,
     title: title,
     bodyHTML: html,
     number: id_blog,
@@ -86,6 +86,7 @@ export async function getBlogDetail(blogId: number): Promise<BlogDetail> {
     id_blog,
     author: {url: authorUrl, name: authorName, avatar: authorAvatar},
     createdAt,
+    lastEdited,
     title,
     bodyHTML: html,
     tags: tags,

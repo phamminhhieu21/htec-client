@@ -1,5 +1,5 @@
 import React from 'react'
-import {NextPage, InferGetServerSidePropsType, GetServerSideProps} from 'next'
+import {NextPage} from 'next'
 import styled from 'styled-components'
 import NextNProgress from 'nextjs-progressbar'
 
