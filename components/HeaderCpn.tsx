@@ -18,6 +18,10 @@ const HeaderCpn = (props: any) => {
       margin-top: 5rem;
       overflow: hidden;
       transition: all 0.3s ease;
+      @media screen and (max-width: 479px) {
+        width: 16.75rem;
+        height: 16.75rem;
+      }
       img {
         width: 100%;
         height: 100%;
@@ -31,6 +35,9 @@ const HeaderCpn = (props: any) => {
       margin-top: 2rem;
       color: #8ef8d4;
       text-shadow: 3px 5px #3c70be;
+      @media screen and (max-width: 479px) {
+        font-size: 2.8rem;
+      }
     }
     .intro {
       margin-top: 1.5rem;
