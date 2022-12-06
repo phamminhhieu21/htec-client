@@ -2,7 +2,8 @@
 import React from 'react'
 import Link from 'next/link'
 import {TimeSince} from '../utils/helper'
-import {ImBlog} from 'react-icons/im'
+import {FcOk, FcApproval, FcCopyright} from 'react-icons/fc'
+import {MdAccountCircle} from 'react-icons/md'
 import styled from 'styled-components'
 
 interface BlogHeaderProps {
@@ -39,33 +40,45 @@ export const BlogHeader: React.FC<BlogHeaderProps> = (props) => {
       }
     }
     #icon-author {
-      margin-right : 6px;
-      svg{
-        font-size : 1.2rem;
-      }
+      margin-right: 6px;
+
       @media screen and (max-width: 479px) {
         display: block;
+        svg {
+          font-size: 1.8rem;
+        }
       }
       @media screen and (min-width: 480px) {
         display: none;
       }
     }
-    .date-time-blog{
+    .date-time-blog {
       @media screen and (max-width: 479px) {
-        li{
-          font-size : 0.78rem;
-          margin-left : 0;
+        li {
+          font-size: 0.78rem;
+          margin-left: 0;
         }
-        li:first-child{
-          list-style : none;
-          
+        li:first-child {
+          list-style: none;
+        }
+      }
+      .author-url {
+        @media screen and (max-width: 479px) {
+          display: none;
+        }
+      }
+      .last-edited {
+        font-size: 1.2rem;
+        @media screen and (max-width: 479px) {
+          font-size: 1rem;
+          margin-right: 6px;
         }
       }
     }
   `
   return (
     <Wrapped>
-      <div className="flex items-start">
+      <div className="flex items-start header-preview">
         <Link href="/profile">
           <img
             src={authorAvatarUrl}
@@ -75,7 +88,7 @@ export const BlogHeader: React.FC<BlogHeaderProps> = (props) => {
             height={50}
           />
           <div id="icon-author">
-            <ImBlog />
+            <MdAccountCircle />
           </div>
         </Link>
         <div className="flex flex-col">
@@ -84,16 +97,18 @@ export const BlogHeader: React.FC<BlogHeaderProps> = (props) => {
           </Link>
           <div className="flex gap-4 date-time-blog">
             {isPreview && (
-              <li className="list-none font-normal text-[0.85rem]">
+              <li className="list-none font-normal text-[0.85rem] author-url">
                 {authorUrl}
               </li>
             )}
-            <li className="font-normal ml-2 text-[0.85rem]">
+            <li className="font-normal ml-2 text-[0.85rem] flex flex-row flex-wrap items-center">
+              <FcCopyright className="last-edited" />{' '}
               {createdDate.toLocaleDateString('en-US', options)}
             </li>
             {isDetailBlog && lastEdited && (
-              <li className="font-normal ml-2 text-[0.85rem]">
-                Last edited {TimeSince(lastEdited)}
+              <li className="font-normal ml-2 text-[0.85rem] list-none flex flex-row flex-wrap items-center">
+                <FcApproval className="last-edited" /> Last edited{' '}
+                {TimeSince(lastEdited)}
               </li>
             )}
           </div>

@@ -3,6 +3,9 @@ import {BlogPost} from './../model/blog'
 import {BlogHeader} from './BlogHeader'
 import styled from 'styled-components'
 import TagCpn from './Tags'
+import {IoIosArrowDroprightCircle, IoMdReturnRight} from 'react-icons/io'
+import {RxPaperPlane, RxLink2, RxDotFilled} from 'react-icons/rx'
+
 const BlogPreview: React.FC<BlogPost> = (props) => {
   const {
     title,
@@ -13,9 +16,9 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
     authorAvatarUrl,
     authorUrl,
     labels,
-    lastEdited
+    lastEdited,
   } = props
-  console.log("props in blog preview", props)
+  console.log('props in blog preview', props)
   const previewText = bodyText.substring(0, 150) + '...'
   const Wrapped = styled.div`
     .tags-custom {
@@ -34,12 +37,26 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
             width: 0.8rem;
           }
         }
+        @media screen and (max-width: 479px) {
+          display: none;
+        }
+      }
+      .readmore-mobile {
+        position: absolute;
+        right: 0;
+        svg {
+          font-size: 1.3rem;
+          color: #1f1facb8;
+        }
+        @media screen and (max-width: 479px) {
+          display: block;
+        }
       }
     }
   `
   return (
     <Wrapped>
-      <section>
+      <section className="blog-preview">
         <BlogHeader
           createdAt={createdAt}
           lastEdited={lastEdited}
@@ -48,8 +65,17 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
           authorAvatarUrl={authorAvatarUrl}
           isPreview={true}
         />
-        <h2 className="font-bold">{title}</h2>
+        <h2 className="font-bold title-blog-preview">{title}</h2>
         <p className="mt-2">{previewText}</p>
+        <div>
+          {/* <a
+            className="text-slate-400 text-sm font-bold mt-1 flex flex-row items-center flex-wrap"
+            href={urlBlogCustom}
+          >
+            <RxLink2 style={{marginRight: '4px', fontSize: '1rem'}} />{' '}
+            {urlBlogCustom}
+          </a> */}
+        </div>
         <div className="flex flex-row gap-2 mt-2 tags-custom">
           {tags.map((tag, index) => {
             return <TagCpn key={index} tag={tag} labels={labels} />
@@ -75,6 +101,9 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
                 />
               </svg>
             </a>
+          </div>
+          <div className="readmore-mobile">
+            <IoMdReturnRight />
           </div>
         </div>
       </section>

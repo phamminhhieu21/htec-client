@@ -13,7 +13,9 @@ import ButtonBack from '../../components/ButtonBack'
 import styled from 'styled-components'
 import TableOfContent from '../../components/TableOfContent'
 import RelatedBlog from '../../components/RelatedBlog'
-import {MdArticle} from 'react-icons/md'
+import {IoIosRocket, IoIosPlanet} from 'react-icons/io'
+import {FcDocument, FcRating} from 'react-icons/fc'
+import {ImPriceTags} from 'react-icons/im'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const route: string[] | string | undefined = context.query.id
@@ -81,11 +83,14 @@ export const BlogDetailPage: NextPage = ({
         height: fit-content;
         border-radius: 20px;
         border: 2px solid #033162c7;
+        position: relative;
         @media screen and (max-width: 479px) {
           padding: 8px;
           max-width: 100%;
-          padding: 22px;
+          padding: 20px;
           margin-top: 30px;
+          border-top: 1.2px dashed #2196fca9;
+          border-bottom: 1.5px dashed #2196fca9;
         }
         .avatar-custom {
           @media screen and (max-width: 479px) {
@@ -110,7 +115,7 @@ export const BlogDetailPage: NextPage = ({
           width: 75%;
           @media screen and (max-width: 479px) {
             bottom: -20%;
-            width: 85%;
+            width: 95%;
           }
         }
         .tags {
@@ -118,12 +123,12 @@ export const BlogDetailPage: NextPage = ({
           flex-direction: row;
           width: fit-content;
           display: flex;
-          border: 1.5px dashed #004d91e0;
           border-radius: 8px;
           margin-bottom: 15px;
           padding: 10px 12px;
           @media screen and (max-width: 479px) {
             font-size: 0.85rem;
+            flex-wrap: wrap;
           }
           .lb-tags {
             margin-right: 3px;
@@ -131,21 +136,48 @@ export const BlogDetailPage: NextPage = ({
           .tag {
             padding: 0 6px;
             cursor: pointer;
-
+            @media screen and (max-width: 479px) {
+              margin-top: 8px;
+            }
             .tag-custom {
               @media screen and (max-width: 479px) {
                 font-size: 0.7rem;
+                padding-top: 0.15rem;
+                padding-bottom: 0.15rem;
               }
+            }
+          }
+          .icon-tags {
+            font-size: 2rem;
+            @media screen and (max-width: 479px) {
+              font-size: 1.15rem;
             }
           }
         }
         .author-infor {
           @media screen and (max-width: 479px) {
-            margin-top: 6px;
+            margin-top: 35px;
+            margin-bottom: 0.75rem;
           }
           .date-time-blog {
             @media screen and (max-width: 479px) {
               margin-top: 5px;
+              gap: 0.5rem;
+            }
+          }
+        }
+        .logo-mini {
+          position: absolute;
+          top: -0.5%;
+          left: 50%;
+          transform: translateX(-16px);
+          @media screen and (max-width: 479px) {
+            /* top: -3%; */
+          }
+          svg {
+            font-size: 2.5rem;
+            @media screen and (max-width: 479px) {
+              font-size: 1.7rem;
             }
           }
         }
@@ -183,17 +215,17 @@ export const BlogDetailPage: NextPage = ({
           margin-left: 6px;
         }
       }
-      .list-related-blog{
+      .list-related-blog {
         @media screen and (max-width: 479px) {
           margin-top: 15px;
         }
       }
-      .icon-rel-title{
+      .icon-rel-title {
         color: #ffff;
-        font-size : 1.8rem;
-        margin-right : 8px;
+        font-size: 1.8rem;
+        margin-right: 8px;
         @media screen and (max-width: 479px) {
-          font-size : 1.3rem;
+          font-size: 1.3rem;
         }
       }
     }
@@ -212,22 +244,16 @@ export const BlogDetailPage: NextPage = ({
       <title>{title}</title>
       <section className="layout detail-page-custom">
         <div className="max-w-[50%] detail-page-content__custom">
+          <div className="logo-mini">
+            <IoIosPlanet />
+          </div>
           <div className="navi-back">
             <ButtonBack />
           </div>
           <h1 className="text-center my-10 text-[2rem] font-bold" id="title">
             {title}
           </h1>
-          <div className="tags">
-            <span className="lb-tags">Tags:</span>
-            {blogData.tags.map((tag: string, index: number) => {
-              return (
-                <span key={index} className="tag">
-                  <TagCpn tag={tag} labels={labels} />
-                </span>
-              )
-            })}
-          </div>
+
           <div
             className="flex justify-start mb-4 author-infor"
             style={{position: 'relative'}}
@@ -242,6 +268,18 @@ export const BlogDetailPage: NextPage = ({
             />
             <div className="border-custom"></div>
           </div>
+          <div className="tags">
+            <span className="lb-tags">
+              <ImPriceTags className="icon-tags" />
+            </span>
+            {blogData.tags.map((tag: string, index: number) => {
+              return (
+                <span key={index} className="tag">
+                  <TagCpn tag={tag} labels={labels} />
+                </span>
+              )
+            })}
+          </div>
           <div className={`${detail.html} flex flex-col`}>
             {parse(bodyHTML)}
           </div>
@@ -251,9 +289,7 @@ export const BlogDetailPage: NextPage = ({
         </div>
         <div className="related-blogs p-11 w-fit mx-auto">
           <span className="flex items-center font-bold text-lg text-slate-300 related-title">
-            <MdArticle
-              className='icon-rel-title'
-            /> Bài viết liên quan
+            <FcDocument className="icon-rel-title" /> Bài viết liên quan
           </span>
           <div className="flex flex-row flex-wrap justify-center mt-10  gap-4 overflow-auto list-related-blog">
             {relatedBlogs &&

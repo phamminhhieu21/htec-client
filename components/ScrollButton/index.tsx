@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {FaArrowCircleUp} from 'react-icons/fa'
 import styled from 'styled-components'
 import {Button} from './styled'
+import {IoMdAirplane} from 'react-icons/io'
 
 const ScrollButton = () => {
   const Wrapped = styled.div`
@@ -9,6 +10,9 @@ const ScrollButton = () => {
     .icon-scrollTop {
       @media screen and (max-width: 479px) {
         font-size : 2.5rem;
+      }
+      path{
+        color: #5a92f5d4;
       }
     }
   `
@@ -33,7 +37,7 @@ const ScrollButton = () => {
   return (
     <Wrapped>
       <Button>
-        <FaArrowCircleUp
+        <IoMdAirplane
           onClick={scrollToTop}
           className="icon-scrollTop"
           style={{
