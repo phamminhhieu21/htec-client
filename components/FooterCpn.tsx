@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 const FooterCpn = () => {
   const Wrapped = styled.div`
+    width: 100vw;
     .footer-custom {
       justify-content: center !important;
       background-color: #000d26e6;
@@ -14,7 +15,7 @@ const FooterCpn = () => {
   `
   return (
     <Wrapped>
-      <div className="py-10 px-4  dark:bg-gray-700 md:flex md:items-center md:justify-between footer-custom">
+      <div id='footer' className="py-10 px-4  dark:bg-gray-700 md:flex md:items-center md:justify-between footer-custom">
         <span className="text-base text-gray-500 dark:text-gray-300 sm:text-center label-custom">
           © 2022 <a href="https://flowbite.com/">Copyright by</a> HTEC
         </span>

@@ -94,9 +94,6 @@ export const BlogDetailPage: NextPage = ({
         }
         .navi-back {
           @media screen and (max-width: 479px) {
-            /* button {
-              font-size: 0;
-            } */
             display: none;
           }
         }
