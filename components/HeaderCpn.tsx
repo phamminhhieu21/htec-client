@@ -2,6 +2,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import {FcPortraitMode, FcGoogle, FcIdea, FcSettings} from 'react-icons/fc'
+import {FaAngellist} from 'react-icons/fa'
 const HeaderCpn = (props: any) => {
   const {avatarUrl} = props
   const Wrapped = styled.div`
@@ -21,6 +23,11 @@ const HeaderCpn = (props: any) => {
       @media screen and (max-width: 479px) {
         width: 16.75rem;
         height: 16.75rem;
+        margin-top: 3.8rem;
+      }
+      @media screen and (max-width: 329px) {
+        width: 13.75rem;
+        height: 13.75rem;
       }
       img {
         width: 100%;
@@ -37,10 +44,15 @@ const HeaderCpn = (props: any) => {
       text-shadow: 3px 5px #3c70be;
       @media screen and (max-width: 479px) {
         font-size: 2.8rem;
+        margin-bottom: 1rem;
       }
     }
     .intro {
       margin-top: 1.5rem;
+      .icon-intro {
+        font-size: 1.55rem;
+        margin-left: 6px;
+      }
     }
   `
   return (
@@ -80,8 +92,28 @@ const HeaderCpn = (props: any) => {
               </span>
             </Link>
             <div className="intro text-lg">
-              <p>
-                I&apos;m a<b> Web Developer</b>
+              <p
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <FaAngellist
+                  className="icon-intro"
+                  style={{marginRight: '4px'}}
+                />{' '}
+                I&apos;m a &nbsp;
+                <b
+                  style={{
+                    fontWeight: 700,
+                    color: '#8ef8d4',
+                    textShadow: '1px 3px #3c70be',
+                  }}
+                >
+                  Web Developer
+                </b>{' '}
+                <FcGoogle className="icon-intro" />
               </p>
               <p>
                 A <b>Developer</b> likes <b>writing</b> and love{' '}

@@ -9,7 +9,8 @@ import Link from 'next/link'
 import FooterCpn from '../components/FooterCpn'
 import HeaderCpn from '../components/HeaderCpn'
 import NextNProgress from 'nextjs-progressbar'
-
+// import {MdLabel , MdLabelOutline , MdOutlineLabelImportant } from 'react-icons/md'
+import {FcRules} from 'react-icons/fc'
 export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
   console.log(blogs)
@@ -53,18 +54,48 @@ const Home: NextPage = ({
       bottom: -58px;
       section{
         @media screen and (max-width: 479px) {
-          padding: 0px 25px;
-          margin-top: 1rem;
-          padding-bottom: 2rem;
+          padding: 0px 20px;
+          margin-top: 1.5rem;
+          padding-bottom: 1rem;
         }
         &.list-tag-custom{
           @media screen and (max-width: 479px) {
           
           }
           .label-item{
+            align-items : center;
             @media screen and (max-width: 479px) {
               flex-wrap: wrap;
               gap : 0.65rem;
+              margin-bottom: 1rem;
+            }
+            .icon-tags{
+              font-size : 1.5rem;
+              @media screen and (max-width: 479px) {}
+            }
+          }
+        }
+        &.list-blogs{
+          @media screen and (max-width: 479px) {}
+          @media screen and (max-width: 349px) {
+            padding: 0px 10px;
+        }
+          .tags-custom{
+            @media screen and (max-width: 479px) {
+              flex-wrap: wrap;
+            }
+            .readmore{
+              @media screen and (max-width: 479px) {
+                
+              }
+            }
+          }
+          .blogs-title{
+            width: 100%;
+            padding: 20px 18px;
+            .icon-blogs-title{
+              margin-right: 0.3rem;
+              font-size : 1.4rem;
             }
           }
         }
@@ -89,8 +120,38 @@ const Home: NextPage = ({
         background-color: rgb(100 116 139);
       }
       @media screen and (max-width: 479px) {
-        width: 21rem;
+        width: 21.5rem; 
         max-width: 23rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      @media screen and (max-width: 369px) {
+        width: 19rem;
+        max-width: 20.5rem;
+      }
+      @media screen and (max-width: 349px) {
+        width: 19rem;
+        max-width: 20.5rem;
+      }
+      @media screen and (max-width: 329px) {
+        width: 18rem;
+        max-width: 18.7rem;
+      }
+      .blog-preview{
+        @media screen and (max-width: 479px) {
+          padding: 0 8px;
+          margin-top: 0.8rem;
+        }
+        .header-preview{
+          @media screen and (max-width: 479px) {
+
+          }
+        }
+        .title-blog-preview{
+          @media screen and (max-width: 479px) {
+            padding: 10px 0px 0px 0px;
+          }
+        }
       }
     }
     .label-not-selected {
@@ -147,6 +208,19 @@ const Home: NextPage = ({
         <HeaderCpn avatarUrl="https://avatars.githubusercontent.com/u/65443368?v=4" />
         <section className="flex flex-row items-center text-[1.15rem] mt-12 list-tag-custom">
           <div className="flex gap-3 mb-12 label-item">
+            {/* <MdLabel className='icon-tags'/> */}
+            <div>
+              <span
+                className="text-[1.2rem] font-bold"
+                style={{
+                  fontWeight: '700',
+                  color: '#94cef4',
+                  textShadow: 'rgb(3 85 209 / 95%) 2px 4px',
+                }}
+              >
+                Tags
+              </span>
+            </div>
             {tags?.map((tag: string, index: number) => {
               return (
                 <button
@@ -173,7 +247,19 @@ const Home: NextPage = ({
           </div>
         </section>
         <section className="flex flex-col items-center text-[1.15rem] mt-9 list-blogs">
-          <div className="flex gap-3 mb-12"></div>
+          <div className="blogs-title flex flex-row items-center flex-wrap">
+            <FcRules className="icon-blogs-title" />
+            <h2
+              className="font-bold text-xl"
+              style={{
+                fontWeight: 700,
+                color: '#8ef8d4',
+                textShadow: '1px 3px #3c70be',
+              }}
+            >
+              Blogs <b>({filterBlog.length})</b>
+            </h2>
+          </div>
           {filterBlog.map((blog: BlogPost) => {
             return (
               <div

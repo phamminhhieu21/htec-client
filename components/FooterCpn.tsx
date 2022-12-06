@@ -15,9 +15,13 @@ const FooterCpn = () => {
   `
   return (
     <Wrapped>
-      <div id='footer' className="py-10 px-4  dark:bg-gray-700 md:flex md:items-center md:justify-between footer-custom">
+      <div
+        id="footer"
+        className="py-10 px-4  dark:bg-gray-700 md:flex md:items-center md:justify-between footer-custom"
+      >
         <span className="text-base text-gray-500 dark:text-gray-300 sm:text-center label-custom">
-          © 2022 <a href="https://flowbite.com/">Copyright by</a> HTEC
+          <b>©</b> 2022 <a href="https://flowbite.com/">Copyright by</a>{' '}
+          <b>HTec</b>
         </span>
         <div className="flex mt-4 space-x-6 sm:justify-center md:mt-0 ml-4 icon-custom">
           <a
