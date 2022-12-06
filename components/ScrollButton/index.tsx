@@ -6,6 +6,11 @@ import {Button} from './styled'
 const ScrollButton = () => {
   const Wrapped = styled.div`
     //styled
+    .icon-scrollTop {
+      @media screen and (max-width: 479px) {
+        font-size : 2.5rem;
+      }
+    }
   `
   const [visible, setVisible] = useState(false)
   const toggleVisible = () => {
@@ -30,10 +35,11 @@ const ScrollButton = () => {
       <Button>
         <FaArrowCircleUp
           onClick={scrollToTop}
+          className="icon-scrollTop"
           style={{
             display: visible ? 'inline' : 'none',
             position: 'fixed',
-            bottom: '15%',
+            bottom: '18%',
             right: '2%',
           }}
         />

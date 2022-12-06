@@ -9,7 +9,7 @@ export interface RelatedBlogProps {
 const RelatedBlog = ({title, bodyText, urlBlog}: RelatedBlogProps) => {
   const Wrapped = styled.div`
     .releted-blog {
-      background-color: #cccc;
+      background-color: #7aa3ed45;
     }
   `
   const urlBlogCustom = URL + urlBlog
