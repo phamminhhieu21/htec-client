@@ -51,6 +51,9 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
         @media screen and (max-width: 479px) {
           display: block;
         }
+        @media screen and (min-width: 480px) {
+          display: none;
+        }
       }
     }
   `

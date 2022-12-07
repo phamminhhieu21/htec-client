@@ -24,13 +24,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let labels = await getLabels()
   let blogs: BlogPost[] = await getBlogs()
   const relatedBlogs = blogs
+    .filter((blog) => blog.id !== blogDetail.id_blog)
     .filter((blog) => {
       return blog.tags.every((tag) =>
         labels.some((label) => label.name === tag)
       )
     })
     .slice(0, 3)
-  console.log('relatedBlogs', relatedBlogs)
   return {
     props: {
       blogData: blogDetail,
