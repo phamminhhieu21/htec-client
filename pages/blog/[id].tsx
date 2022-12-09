@@ -192,7 +192,7 @@ export const BlogDetailPage: NextPage = ({
       .tb-content {
         position: absolute;
         top: 13%;
-        right: 8%;
+        right: 5%;
         height: fit-content;
         max-width: 20%;
         display: flex;
