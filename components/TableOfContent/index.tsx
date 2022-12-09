@@ -46,16 +46,16 @@ const TableOfContent = () => {
       }
     }
     nav {
-      width: 275px;
-      max-width: 285px;
-      padding: 6px;
+      width: max-content;
+      max-width: 350px;
+      padding: 20px;
       align-self: flex-start;
-      position: -webkit-sticky;
+      /* position: -webkit-sticky; */
       position: sticky;
       top: 48px;
       max-height: calc(100vh - 70px);
       overflow: auto;
-      margin-top: 150px;
+      margin-top: 80px;
     }
 
     nav ul li {

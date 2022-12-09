@@ -92,6 +92,13 @@ export const BlogDetailPage: NextPage = ({
           border-top: 1.2px dashed #2196fca9;
           border-bottom: 1.5px dashed #2196fca9;
         }
+        @media screen and (min-width: 480px) and (max-width: 849px) {
+          max-width: 80% !important;
+        }
+        @media screen and (min-width: 850px) and (max-width: 1300px) {
+          max-width: 70%;
+        }
+
         .avatar-custom {
           @media screen and (max-width: 479px) {
             display: none;
@@ -148,7 +155,7 @@ export const BlogDetailPage: NextPage = ({
             }
           }
           .icon-tags {
-            font-size: 2rem;
+            font-size: 1.5rem;
             @media screen and (max-width: 479px) {
               font-size: 1.15rem;
             }
@@ -191,9 +198,12 @@ export const BlogDetailPage: NextPage = ({
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        border: 1px dashed #5dafeb70;
+        /* border: 1px dashed #5dafeb70; */
         border-radius: 13px;
         @media screen and (max-width: 479px) {
+          display: none;
+        }
+        @media screen and (max-width: 1300px) {
           display: none;
         }
       }
@@ -204,10 +214,16 @@ export const BlogDetailPage: NextPage = ({
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 15px;
+      width : 62%;
+      padding: 1rem;
+      transform: translateX(10%);
+      padding-bottom: 5rem;
       @media screen and (max-width: 479px) {
         margin-top: 20px;
         padding: 0px 15px;
         margin-bottom: 35px;
+        width: 100%;
+        transform: translateX(0%);
       }
       .related-title {
         @media screen and (max-width: 479px) {
@@ -291,7 +307,7 @@ export const BlogDetailPage: NextPage = ({
           <span className="flex items-center font-bold text-lg text-slate-300 related-title">
             <FcDocument className="icon-rel-title" /> Bài viết liên quan
           </span>
-          <div className="flex flex-row flex-wrap justify-center mt-10  gap-4 overflow-auto list-related-blog">
+          <div className="flex flex-row flex-wrap justify-start mt-10  gap-4 overflow-auto list-related-blog">
             {relatedBlogs &&
               relatedBlogs.map((blog: BlogPost, index: number) => {
                 return (
