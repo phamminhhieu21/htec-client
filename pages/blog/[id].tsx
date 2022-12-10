@@ -17,10 +17,12 @@ import {IoIosPlanet} from 'react-icons/io'
 import {FcDocument} from 'react-icons/fc'
 import {ImPriceTags} from 'react-icons/im'
 import dynamic from 'next/dynamic'
+const LikeAndShare = dynamic(() => import('../../plugins/Facebook/LikeAndShare'), {
+  ssr: false,
+})
 const Comments = dynamic(() => import('../../plugins/Facebook/Comment'), {
   ssr: false,
 })
-// import Comments from '../../plugins/Facebook/Comment'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const route: string[] | string | undefined = context.query.id
@@ -167,6 +169,12 @@ export const BlogDetailPage: NextPage = ({
             }
           }
         }
+        #like-n-share{
+          margin : 3px 0px;
+          @media screen and (max-width: 479px) {
+
+          }
+        }
         .author-infor {
           @media screen and (max-width: 479px) {
             margin-top: 35px;
@@ -219,7 +227,9 @@ export const BlogDetailPage: NextPage = ({
         padding: 12px;
         margin: 50px 0px 20px 0px;
         background-color: white;
-        @media screen and (max-width: 479px) {}
+        @media screen and (max-width: 479px) {
+          width: 94%;
+        }
       }
     }
     .related-blogs {
@@ -262,10 +272,10 @@ export const BlogDetailPage: NextPage = ({
   `
   const {author, bodyHTML, createdAt, title, id_blog, lastEdited} = blogData
   const {name: authorLogin, avatar: authorAvatarUrl, url: authorUrl} = author
-  let currentURL: any = true
+  let currentURL: any = process.env.APP_IS_LOCALHOST === 'true'
     ? process.env.URL_APP_PROD
     : window.location.href
-
+  let numberPost = 100
   return (
     <Wrapped>
       <NextNProgress
@@ -314,6 +324,11 @@ export const BlogDetailPage: NextPage = ({
               )
             })}
           </div>
+          <div id="like-n-share">
+            <LikeAndShare
+              dataHref={currentURL}
+            />
+          </div>
           <div className={`${detail.html} flex flex-col`}>
             {parse(bodyHTML)}
           </div>
@@ -322,7 +337,11 @@ export const BlogDetailPage: NextPage = ({
           <TableOfContent />
         </div>
         <div id="comments">
-          <Comments dataHref={currentURL} width="100%" />
+          <Comments 
+            dataHref={currentURL} 
+            width="100%" 
+            numberPost={numberPost}
+          />
         </div>
         <div className="related-blogs p-11 w-fit mx-auto">
           <span className="flex items-center font-bold text-lg text-slate-300 related-title">
