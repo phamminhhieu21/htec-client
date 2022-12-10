@@ -1,7 +1,7 @@
 import React from 'react'
 import {NextPage, InferGetServerSidePropsType, GetServerSideProps} from 'next'
 import {getBlogDetail, getLabels, getBlogs} from '../../server/blogs'
-import {BlogPost, labelPost} from '../../model/blog'
+import {BlogPost} from '../../model/blog'
 import {BlogHeader} from '../../components/BlogHeader'
 import parse from 'html-react-parser'
 import detail from '../../styles/id.module.css'
@@ -13,9 +13,14 @@ import ButtonBack from '../../components/ButtonBack'
 import styled from 'styled-components'
 import TableOfContent from '../../components/TableOfContent'
 import RelatedBlog from '../../components/RelatedBlog'
-import {IoIosRocket, IoIosPlanet} from 'react-icons/io'
-import {FcDocument, FcRating} from 'react-icons/fc'
+import {IoIosPlanet} from 'react-icons/io'
+import {FcDocument} from 'react-icons/fc'
 import {ImPriceTags} from 'react-icons/im'
+import dynamic from 'next/dynamic'
+const Comments = dynamic(() => import('../../plugins/Facebook/Comment'), {
+  ssr: false,
+})
+// import Comments from '../../plugins/Facebook/Comment'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const route: string[] | string | undefined = context.query.id
@@ -95,6 +100,7 @@ export const BlogDetailPage: NextPage = ({
         @media screen and (min-width: 480px) and (max-width: 849px) {
           max-width: 80% !important;
         }
+
         @media screen and (min-width: 850px) and (max-width: 1300px) {
           max-width: 70%;
         }
@@ -192,7 +198,7 @@ export const BlogDetailPage: NextPage = ({
       .tb-content {
         position: absolute;
         top: 13%;
-        right: 8%;
+        right: 5%;
         height: fit-content;
         max-width: 20%;
         display: flex;
@@ -206,6 +212,14 @@ export const BlogDetailPage: NextPage = ({
         @media screen and (max-width: 1300px) {
           display: none;
         }
+      }
+      #comments{
+        width: 50%;
+        border-radius: 8px;
+        padding: 12px;
+        margin: 50px 0px 20px 0px;
+        background-color: white;
+        @media screen and (max-width: 479px) {}
       }
     }
     .related-blogs {
@@ -248,6 +262,10 @@ export const BlogDetailPage: NextPage = ({
   `
   const {author, bodyHTML, createdAt, title, id_blog, lastEdited} = blogData
   const {name: authorLogin, avatar: authorAvatarUrl, url: authorUrl} = author
+  let currentURL: any = true
+    ? process.env.URL_APP_PROD
+    : window.location.href
+
   return (
     <Wrapped>
       <NextNProgress
@@ -302,6 +320,9 @@ export const BlogDetailPage: NextPage = ({
         </div>
         <div className="tb-content">
           <TableOfContent />
+        </div>
+        <div id="comments">
+          <Comments dataHref={currentURL} width="100%" />
         </div>
         <div className="related-blogs p-11 w-fit mx-auto">
           <span className="flex items-center font-bold text-lg text-slate-300 related-title">

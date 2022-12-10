@@ -17,7 +17,6 @@ interface BlogHeaderProps {
 }
 
 export const BlogHeader: React.FC<BlogHeaderProps> = (props) => {
-  console.log('lastEdited blog header', props.lastEdited)
   const {
     createdAt,
     authorUrl,
