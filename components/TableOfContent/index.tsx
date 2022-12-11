@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {useEffect, useState} from 'react'
 import {useHeadsObserver} from '../../Hooks/useHeadsObserver'
-import { SiCodefactor } from "react-icons/si";
-import { FcNext } from "react-icons/fc";
+import {SiCodefactor} from 'react-icons/si'
+import {FcNext} from 'react-icons/fc'
 
 const TableOfContent = () => {
   const [headings, setHeadings] = useState([])
@@ -84,9 +84,7 @@ const TableOfContent = () => {
     <Wrapped>
       <nav>
         <p className="title">
-          <SiCodefactor 
-            style={{marginRight: '8px'}}
-          /> TABLE OF CONTENTS
+          <SiCodefactor style={{marginRight: '8px'}} /> TABLE OF CONTENTS
         </p>
         <ul className="list-content">
           {headings.map((heading: any) => {
@@ -111,7 +109,7 @@ const TableOfContent = () => {
                   <FcNext
                     style={{
                       marginRight: '5px',
-                      fontSize: '0.9rem'
+                      fontSize: '0.9rem',
                     }}
                   />
                   {heading.text}

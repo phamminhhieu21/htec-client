@@ -18,6 +18,8 @@ import {FcDocument} from 'react-icons/fc'
 import {ImPriceTags} from 'react-icons/im'
 import {URL_PROD} from '../../constant'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import {toSlug} from './../../utils/helper'
 const Like = dynamic(() => import('../../plugins/Facebook/Like'), {
   ssr: false,
 })
@@ -30,7 +32,9 @@ const Share = dynamic(() => import('../../plugins/Facebook/Share'), {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const route: string[] | string | undefined = context.query.slug
-  const id_after_split = route?.toString().split('-')[route?.toString().split('-').length - 1]
+  const id_after_split = route?.toString().split('-')[
+    route?.toString().split('-').length - 1
+  ]
   const id = Number(id_after_split)
   let blogDetail = await getBlogDetail(id)
   let labels = await getLabels()
@@ -43,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       )
     })
     .slice(0, 3)
+  console.log('relatedBlogs: ', relatedBlogs)
   return {
     props: {
       blogData: blogDetail,
@@ -180,9 +185,13 @@ export const BlogDetailPage: NextPage = ({
           flex-direction: row;
           flex-wrap: wrap;
           margin: 3px 0px;
-          .like{}
+          height:25px;
+          -webkit-writing-mode: vertical-lr;
+          .like{
+            height:25px;
+          }
           .share{
-            margin-top: -1.6%;
+            height:25px;
           }
           @media screen and (max-width: 479px) {
           }
@@ -286,6 +295,11 @@ export const BlogDetailPage: NextPage = ({
   const {name: authorLogin, avatar: authorAvatarUrl, url: authorUrl} = author
   let currentURL: string = `${URL_PROD}/blog/${id_blog}`
   let numberPost = 100
+  const convertUrlToSlug = (url: string | undefined, title: string) => {
+    const slug = toSlug(title)
+    const id = url?.split('/')[url?.split('/').length - 1]
+    return `${slug}-b-${id}`
+  }
   return (
     <Wrapped>
       <NextNProgress
@@ -335,10 +349,10 @@ export const BlogDetailPage: NextPage = ({
             })}
           </div>
           <div id="like-n-share">
-            <div className='like'>
+            <div className="like">
               <Like dataHref={currentURL} width="100" />
             </div>
-            <div className='share'>
+            <div className="share">
               <Share dataHref={currentURL} />
             </div>
           </div>
@@ -364,12 +378,17 @@ export const BlogDetailPage: NextPage = ({
             {relatedBlogs &&
               relatedBlogs.map((blog: BlogPost, index: number) => {
                 return (
-                  <RelatedBlog
+                  <Link
                     key={index}
-                    title={blog.title}
-                    bodyText={blog.bodyText}
-                    urlBlog={blog.url}
-                  />
+                    href={convertUrlToSlug(blog.url, blog.title)}
+                    rel="noreferrer"
+                  >
+                    <RelatedBlog
+                      title={blog.title}
+                      bodyText={blog.bodyText}
+                      urlBlog={blog.url}
+                    />
+                  </Link>
                 )
               })}
           </div>

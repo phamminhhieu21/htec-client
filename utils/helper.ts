@@ -1,58 +1,66 @@
 export const sleep = (ms: any): any =>
   new Promise((resolve) => setTimeout(resolve, ms))
-  
-export const TimeSince = (date : any) : any => {
-  var seconds = Math.floor((new Date().valueOf() - new Date(date).valueOf()) / 1000);
 
-  var interval = seconds / 31536000;
+export const TimeSince = (date: any): any => {
+  var seconds = Math.floor(
+    (new Date().valueOf() - new Date(date).valueOf()) / 1000
+  )
+
+  var interval = seconds / 31536000
 
   if (interval > 1) {
-    return Math.floor(interval) + " years ago";
+    return Math.floor(interval) + ' years ago'
   }
-  interval = seconds / 2592000;
+  interval = seconds / 2592000
   if (interval > 1) {
-    return Math.floor(interval) + " months ago";
+    return Math.floor(interval) + ' months ago'
   }
-  interval = seconds / 86400;
+  interval = seconds / 86400
   if (interval > 1) {
-    return Math.floor(interval) + " days ago";
+    return Math.floor(interval) + ' days ago'
   }
-  interval = seconds / 3600;
+  interval = seconds / 3600
   if (interval > 1) {
-    return Math.floor(interval) + " hours ago";
+    return Math.floor(interval) + ' hours ago'
   }
-  interval = seconds / 60;
+  interval = seconds / 60
   if (interval > 1) {
-    return Math.floor(interval) + " minutes";
+    return Math.floor(interval) + ' minutes'
   }
-  return /* Math.floor(seconds) +  */"Just now";
+  return /* Math.floor(seconds) +  */ 'Just now'
 }
 
-export const toSlug = (str : string) : string => {
+export const toSlug = (str: string): string => {
   // Chuyển hết sang chữ thường
-  str = str.toLowerCase();     
- 
+  str = str.toLowerCase()
+
   // xóa dấu
   str = str
     .normalize('NFD') // chuyển chuỗi sang unicode tổ hợp
-    .replace(/[\u0300-\u036f]/g, ''); // xóa các ký tự dấu sau khi tách tổ hợp
- 
+    .replace(/[\u0300-\u036f]/g, '') // xóa các ký tự dấu sau khi tách tổ hợp
+
   // Thay ký tự đĐ
-  str = str.replace(/[đĐ]/g, 'd');
-  
+  str = str.replace(/[đĐ]/g, 'd')
+
   // Xóa ký tự đặc biệt
-  str = str.replace(/([^0-9a-z-\s])/g, '');
- 
+  str = str.replace(/([^0-9a-z-\s])/g, '')
+
   // Xóa khoảng trắng thay bằng ký tự -
-  str = str.replace(/(\s+)/g, '-');
-  
+  str = str.replace(/(\s+)/g, '-')
+
   // Xóa ký tự - liên tiếp
-  str = str.replace(/-+/g, '-');
- 
+  str = str.replace(/-+/g, '-')
+
   // xóa phần dư - ở đầu & cuối
-  str = str.replace(/^-+|-+$/g, '');
- 
+  str = str.replace(/^-+|-+$/g, '')
+
   // return
-  return str;
+  return str
 }
 
+export const convertUrlToSlug = (url: string | undefined, title: string) => {
+  const slug = toSlug(title)
+  const id = url?.split('/')[url?.split('/').length - 1]
+  const path = url?.split('/')[1]
+  return `${path}/${slug}-b-${id}`
+}

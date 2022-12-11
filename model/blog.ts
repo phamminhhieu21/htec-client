@@ -7,7 +7,7 @@ export interface BlogPost {
   bodyHTML?: string
   bodyText: string
   createdAt: string
-  lastEdited: string 
+  lastEdited: string
   authorUrl?: authorPost['url']
   authorLogin: authorPost['login']
   authorAvatarUrl: authorPost['avatarUrl']
