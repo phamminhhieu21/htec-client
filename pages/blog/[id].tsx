@@ -16,6 +16,7 @@ import RelatedBlog from '../../components/RelatedBlog'
 import {IoIosPlanet} from 'react-icons/io'
 import {FcDocument} from 'react-icons/fc'
 import {ImPriceTags} from 'react-icons/im'
+import {URL_PROD} from '../../constant'
 import dynamic from 'next/dynamic'
 const LikeAndShare = dynamic(() => import('../../plugins/Facebook/LikeAndShare'), {
   ssr: false,
@@ -30,6 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let blogDetail = await getBlogDetail(id)
   let labels = await getLabels()
   let blogs: BlogPost[] = await getBlogs()
+  console.log("blogdetails", blogDetail)
   const relatedBlogs = blogs
     .filter((blog) => blog.id !== blogDetail.id_blog)
     .filter((blog) => {
@@ -272,9 +274,7 @@ export const BlogDetailPage: NextPage = ({
   `
   const {author, bodyHTML, createdAt, title, id_blog, lastEdited} = blogData
   const {name: authorLogin, avatar: authorAvatarUrl, url: authorUrl} = author
-  let currentURL: any = process.env.APP_IS_LOCALHOST === 'true'
-    ? process.env.URL_APP_PROD
-    : window.location.href
+  let currentURL: string = `${URL_PROD}/blog/${id_blog}`
   let numberPost = 100
   return (
     <Wrapped>
@@ -327,6 +327,7 @@ export const BlogDetailPage: NextPage = ({
           <div id="like-n-share">
             <LikeAndShare
               dataHref={currentURL}
+              width="100"
             />
           </div>
           <div className={`${detail.html} flex flex-col`}>
