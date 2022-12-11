@@ -18,7 +18,6 @@ const BlogPreview: React.FC<BlogPost> = (props) => {
     labels,
     lastEdited,
   } = props
-  console.log('props in blog preview', props)
   const previewText = bodyText.substring(0, 150) + '...'
   const Wrapped = styled.div`
     .tags-custom {

@@ -9,8 +9,9 @@ import Link from 'next/link'
 import FooterCpn from '../components/FooterCpn'
 import HeaderCpn from '../components/HeaderCpn'
 import NextNProgress from 'nextjs-progressbar'
-// import {MdLabel , MdLabelOutline , MdOutlineLabelImportant } from 'react-icons/md'
 import {FcRules} from 'react-icons/fc'
+import {toSlug} from '../utils/helper'
+
 export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
   console.log(blogs)
@@ -182,6 +183,13 @@ const Home: NextPage = ({
       : blogsData
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterWord])
+  
+  const convertUrlToSlug = (url: string | undefined , title : string) => {
+    const slug = toSlug(title)
+    const id = url?.split('/')[url?.split('/').length - 1]
+    const path = url?.split('/')[1]
+    return `${path}/${slug}-b-${id}`
+  }
 
   const filterLabel = (e: any, index: number) => {
     if (selectedPosition.includes(index)) {
@@ -266,7 +274,7 @@ const Home: NextPage = ({
                 key={blog.id}
                 className="transition ease-in-out delay-150 bg-neutral-300 hover:-translate-y-1 hover:scale-110 hover:bg-slate-600 duration-200 post-custom max-w-[45em] max-h-[25em] overflow-hidden mx-6 mb-6 text-zinc-800 rounded-lg p-4 hover:text-neutral-300"
               >
-                <Link href={`${blog.url}`}>
+                <Link href={convertUrlToSlug(blog.url , blog.title)}>
                   <BlogPreview
                     title={blog.title}
                     bodyText={blog.bodyText}

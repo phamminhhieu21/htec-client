@@ -3,9 +3,9 @@ import {useEffect} from 'react'
 
 interface LikeAndShare {
   dataHref?: string
-  width?:string
+  width?: string
 }
-const LikeAndShare = ({dataHref , width}: LikeAndShare) => {
+const Like = ({dataHref, width}: LikeAndShare) => {
   const initLikeAnShare = () => {
     // if (window.FB) {
     //   window.FB.XFBML.parse()
@@ -14,9 +14,15 @@ const LikeAndShare = ({dataHref , width}: LikeAndShare) => {
     facebookScript.async = true
     facebookScript.defer = true
     facebookScript.crossOrigin = 'anonymous'
-    // facebookScript.nonce = 'EgcPZuLW'
-    facebookScript.src = `https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0&appId=${process.env.FACEBOOK_APP_ID}&autoLogAppEvents=1`
-    // facebookScript.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v15.0&appId=2156491084555653&autoLogAppEvents=1"
+    facebookScript.src = `https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&cookie=true&status=true&appId=${process.env.FACEBOOK_APP_ID}`
+    // Load the SDK asynchronously
+    //   (function (d, s, id) {
+    //     var js, fjs = d.getElementsByTagName(s)[0];
+    //     if (d.getElementById(id)) return;
+    //     js = d.createElement(s); js.id = id;
+    //     js.src = `//connect.facebook.net/${locale}/sdk.js`;
+    //     fjs.parentNode.insertBefore(js, fjs);
+    // }(document, 'script', 'facebook-jssdk'));
     document.body.appendChild(facebookScript)
   }
 
@@ -29,13 +35,13 @@ const LikeAndShare = ({dataHref , width}: LikeAndShare) => {
       <div
         className="fb-like"
         data-href={dataHref}
-        data-width={width ? width : "100"}
+        data-width={width ? width : '100'}
         data-layout="button_count"
         data-action="like"
         data-size="small"
-        data-share="true"
+        data-share="false"
       />
     </>
   )
 }
-export default LikeAndShare
+export default Like
