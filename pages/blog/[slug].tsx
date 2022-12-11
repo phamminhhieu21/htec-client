@@ -24,7 +24,7 @@ const Like = dynamic(() => import('../../plugins/Facebook/Like'), {
 const Comments = dynamic(() => import('../../plugins/Facebook/Comment'), {
   ssr: false,
 })
-const Share = dynamic(() => import('../../plugins/Facebook/share'), {
+const Share = dynamic(() => import('../../plugins/Facebook/Share'), {
   ssr: false,
 })
 
