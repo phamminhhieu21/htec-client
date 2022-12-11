@@ -254,7 +254,7 @@ const Home: NextPage = ({
             })}
           </div>
         </section>
-        <section className="flex flex-col items-center text-[1.15rem] mt-9 list-blogs">
+        <section className="flex flex-col items-center text-[1.15rem] mt-9 mb-9 list-blogs">
           <div className="blogs-title flex flex-row items-center flex-wrap">
             <FcRules className="icon-blogs-title" />
             <h2
