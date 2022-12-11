@@ -18,20 +18,23 @@ import {FcDocument} from 'react-icons/fc'
 import {ImPriceTags} from 'react-icons/im'
 import {URL_PROD} from '../../constant'
 import dynamic from 'next/dynamic'
-const LikeAndShare = dynamic(() => import('../../plugins/Facebook/LikeAndShare'), {
+const Like = dynamic(() => import('../../plugins/Facebook/Like'), {
   ssr: false,
 })
 const Comments = dynamic(() => import('../../plugins/Facebook/Comment'), {
   ssr: false,
 })
+const Share = dynamic(() => import('../../plugins/Facebook/share'), {
+  ssr: false,
+})
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const route: string[] | string | undefined = context.query.id
-  const id = Number(route)
+  const route: string[] | string | undefined = context.query.slug
+  const id_after_split = route?.toString().split('-')[route?.toString().split('-').length - 1]
+  const id = Number(id_after_split)
   let blogDetail = await getBlogDetail(id)
   let labels = await getLabels()
   let blogs: BlogPost[] = await getBlogs()
-  console.log("blogdetails", blogDetail)
   const relatedBlogs = blogs
     .filter((blog) => blog.id !== blogDetail.id_blog)
     .filter((blog) => {
@@ -141,7 +144,7 @@ export const BlogDetailPage: NextPage = ({
           width: fit-content;
           display: flex;
           border-radius: 8px;
-          margin-bottom: 15px;
+          margin-bottom: 9px;
           padding: 10px 12px;
           @media screen and (max-width: 479px) {
             font-size: 0.85rem;
@@ -171,13 +174,21 @@ export const BlogDetailPage: NextPage = ({
             }
           }
         }
-        #like-n-share{
-          margin : 3px 0px;
+        #like-n-share {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          flex-wrap: wrap;
+          margin: 3px 0px;
+          .like{}
+          .share{
+            margin-top: -1.6%;
+          }
           @media screen and (max-width: 479px) {
-
           }
         }
         .author-infor {
+          margin-bottom : 0.5rem;
           @media screen and (max-width: 479px) {
             margin-top: 35px;
             margin-bottom: 0.75rem;
@@ -207,14 +218,13 @@ export const BlogDetailPage: NextPage = ({
       }
       .tb-content {
         position: absolute;
-        top: 13%;
+        top: 10%;
         right: 5%;
         height: fit-content;
         max-width: 20%;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        /* border: 1px dashed #5dafeb70; */
         border-radius: 13px;
         @media screen and (max-width: 479px) {
           display: none;
@@ -223,7 +233,7 @@ export const BlogDetailPage: NextPage = ({
           display: none;
         }
       }
-      #comments{
+      #comments {
         width: 50%;
         border-radius: 8px;
         padding: 12px;
@@ -240,7 +250,7 @@ export const BlogDetailPage: NextPage = ({
       justify-content: center;
       flex-wrap: wrap;
       margin-top: 15px;
-      width : 62%;
+      width: 62%;
       padding: 1rem;
       transform: translateX(10%);
       padding-bottom: 5rem;
@@ -325,12 +335,14 @@ export const BlogDetailPage: NextPage = ({
             })}
           </div>
           <div id="like-n-share">
-            <LikeAndShare
-              dataHref={currentURL}
-              width="100"
-            />
+            <div className='like'>
+              <Like dataHref={currentURL} width="100" />
+            </div>
+            <div className='share'>
+              <Share dataHref={currentURL} />
+            </div>
           </div>
-          <div className={`${detail.html} flex flex-col`}>
+          <div className={`${detail.html} flex flex-col mt-4`}>
             {parse(bodyHTML)}
           </div>
         </div>
@@ -338,9 +350,9 @@ export const BlogDetailPage: NextPage = ({
           <TableOfContent />
         </div>
         <div id="comments">
-          <Comments 
-            dataHref={currentURL} 
-            width="100%" 
+          <Comments
+            dataHref={currentURL}
+            width="100%"
             numberPost={numberPost}
           />
         </div>
