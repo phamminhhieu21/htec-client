@@ -3,8 +3,9 @@ import {useEffect} from 'react'
 
 interface LikeAndShare {
   dataHref?: string
+  width?:string
 }
-const LikeAndShare = ({dataHref}: LikeAndShare) => {
+const LikeAndShare = ({dataHref , width}: LikeAndShare) => {
   const initLikeAnShare = () => {
     // if (window.FB) {
     //   window.FB.XFBML.parse()
@@ -28,7 +29,7 @@ const LikeAndShare = ({dataHref}: LikeAndShare) => {
       <div
         className="fb-like"
         data-href={dataHref}
-        data-width
+        data-width={width ? width : "100"}
         data-layout="button_count"
         data-action="like"
         data-size="small"
