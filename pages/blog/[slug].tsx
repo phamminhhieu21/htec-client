@@ -20,6 +20,7 @@ import {URL_PROD} from '../../constant'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import {toSlug} from './../../utils/helper'
+import Head from 'next/head'
 const Like = dynamic(() => import('../../plugins/Facebook/Like'), {
   ssr: false,
 })
@@ -112,7 +113,6 @@ export const BlogDetailPage: NextPage = ({
         @media screen and (min-width: 480px) and (max-width: 849px) {
           max-width: 80% !important;
         }
-
         @media screen and (min-width: 850px) and (max-width: 1300px) {
           max-width: 70%;
         }
@@ -185,19 +185,19 @@ export const BlogDetailPage: NextPage = ({
           flex-direction: row;
           flex-wrap: wrap;
           margin: 3px 0px;
-          height:25px;
+          height: 25px;
           -webkit-writing-mode: vertical-lr;
-          .like{
-            height:25px;
+          .like {
+            height: 25px;
           }
-          .share{
-            height:25px;
+          .share {
+            height: 25px;
           }
           @media screen and (max-width: 479px) {
           }
         }
         .author-infor {
-          margin-bottom : 0.5rem;
+          margin-bottom: 0.5rem;
           @media screen and (max-width: 479px) {
             margin-top: 35px;
             margin-bottom: 0.75rem;
@@ -300,8 +300,30 @@ export const BlogDetailPage: NextPage = ({
     const id = url?.split('/')[url?.split('/').length - 1]
     return `${slug}-b-${id}`
   }
+  const img_meta = document.getElementsByTagName('img')[1]?.src
+  const description_meta = document.getElementsByTagName('p')[1].innerText
   return (
     <Wrapped>
+      <Head>
+        <title>{title}</title>
+        <meta
+          property="og:url"
+          content={currentURL}
+        />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content={title}
+        />
+        <meta
+          property="og:description"
+          content={description_meta}
+        />
+        <meta
+          property="og:image"
+          content={img_meta}
+        />
+      </Head>
       <NextNProgress
         color="#fd7200cf"
         startPosition={1.5}
@@ -309,7 +331,6 @@ export const BlogDetailPage: NextPage = ({
         height={8}
         showOnShallow={true}
       />
-      <title>{title}</title>
       <section className="layout detail-page-custom">
         <div className="max-w-[50%] detail-page-content__custom">
           <div className="logo-mini">

@@ -28,6 +28,7 @@ const Share = ({dataHref, width}: Share) => {
         data-href={dataHref}
         data-layout="button_count"
         data-size="small"
+        data-lazy="true"
       >
         <a
           target="_blank"
