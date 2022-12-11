@@ -9,9 +9,9 @@ const ScrollButton = () => {
     //styled
     .icon-scrollTop {
       @media screen and (max-width: 479px) {
-        font-size : 2.5rem;
+        font-size: 2.5rem;
       }
-      path{
+      path {
         color: #5a92f5d4;
       }
     }

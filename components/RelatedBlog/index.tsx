@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import {URL} from '../../constant/index'
-import {RxPaperPlane , RxLink2, RxDotFilled} from 'react-icons/rx'
+import {RxLink2} from 'react-icons/rx'
+import {toSlug} from './../../utils/helper'
 export interface RelatedBlogProps {
   title: string
   bodyText: string
@@ -27,12 +28,18 @@ const RelatedBlog = ({title, bodyText, urlBlog}: RelatedBlogProps) => {
         width: 17rem;
         max-width: 18rem;
       }
-      svg{
+      svg {
         /* font-size : 1rem; */
       }
     }
   `
-  const urlBlogCustom = URL + urlBlog
+  const convertUrlToSlug = (url: string | undefined, title: string) => {
+    const slug = toSlug(title)
+    const id = url?.split('/')[url?.split('/').length - 1]
+    const path = url?.split('/')[1]
+    return `${path}/${slug}-b-${id}`
+  }
+  const urlBlogCustom = URL + '/' + convertUrlToSlug(urlBlog, title)
   const previewText =
     bodyText.length >= 110 ? bodyText.substring(0, 110) + '...' : bodyText
   const previewTitle =
@@ -40,10 +47,22 @@ const RelatedBlog = ({title, bodyText, urlBlog}: RelatedBlogProps) => {
   return (
     <Wrapped>
       <section className="flex flex-col w-80 max-h-34 overflow-hidden p-4 releted-blog rounded-xl">
-        <p className="text-slate-50 font-bold text-base flex flex-row">{previewTitle}</p>
+        <p
+          className="text-slate-50 font-bold text-base flex flex-row"
+          title={title}
+        >
+          {previewTitle}
+        </p>
         <p className="text-slate-400">{previewText}</p>
-        <a className="text-slate-400 text-sm font-bold mt-1 flex flex-row items-center flex-wrap" href={urlBlogCustom}>
-          <RxLink2 style={{marginRight : '4px' , fontSize : '1rem'}}/> {urlBlogCustom}
+        <a
+          className="text-slate-400 text-sm font-bold mt-1 flex flex-row items-center flex-wrap"
+          href={urlBlogCustom}
+          title={urlBlogCustom}
+        >
+          <RxLink2 style={{marginRight: '4px', fontSize: '1rem'}} />{' '}
+          {urlBlogCustom.length > 34
+            ? urlBlogCustom.slice(0, 33) + '...'
+            : urlBlogCustom}
         </a>
       </section>
     </Wrapped>

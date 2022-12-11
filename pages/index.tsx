@@ -183,8 +183,8 @@ const Home: NextPage = ({
       : blogsData
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterWord])
-  
-  const convertUrlToSlug = (url: string | undefined , title : string) => {
+
+  const convertUrlToSlug = (url: string | undefined, title: string) => {
     const slug = toSlug(title)
     const id = url?.split('/')[url?.split('/').length - 1]
     const path = url?.split('/')[1]
@@ -274,7 +274,10 @@ const Home: NextPage = ({
                 key={blog.id}
                 className="transition ease-in-out delay-150 bg-neutral-300 hover:-translate-y-1 hover:scale-110 hover:bg-slate-600 duration-200 post-custom max-w-[45em] max-h-[25em] overflow-hidden mx-6 mb-6 text-zinc-800 rounded-lg p-4 hover:text-neutral-300"
               >
-                <Link href={convertUrlToSlug(blog.url , blog.title)}>
+                <Link
+                  href={convertUrlToSlug(blog.url, blog.title)}
+                  rel="noreferrer"
+                >
                   <BlogPreview
                     title={blog.title}
                     bodyText={blog.bodyText}
