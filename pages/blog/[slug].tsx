@@ -309,14 +309,17 @@ export const BlogDetailPage: NextPage = ({
     <Wrapped>
       <Head>
         <title>Cool Title</title>
-        <meta name="description" content="Checkout our cool page" key="desc" />
-        <meta property="og:title" content="Social Title for Cool Page" />
         <meta
-          property="og:description"
+          name="title"
+          content="I am Jhone. Full Stack Developer."
+        />
+        <meta name="description" content="Checkout our cool page" key="desc" />
+        <meta
+          property="description"
           content="And a social description for our cool page"
         />
         <meta
-          property="og:image"
+          property="image"
           content="https://example.com/images/cool-page.jpg"
         />
       </Head>
