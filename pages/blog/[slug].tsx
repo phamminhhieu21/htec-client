@@ -309,7 +309,7 @@ export const BlogDetailPage: NextPage = ({
     <Wrapped>
       <Head>
         <title>Cool Title</title>
-        <meta
+        {/* <meta
           name="title"
           content="I am Jhone. Full Stack Developer."
         />
@@ -321,7 +321,20 @@ export const BlogDetailPage: NextPage = ({
         <meta
           property="image"
           content="https://example.com/images/cool-page.jpg"
+        /> */}
+        <meta property="og:url" content="https://htecw.vercel.app/blog/lua-chon-nghe-nghiep-project-manager-tat-nhien-la-kho-hon-dev-b-2" />
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID} />
+        <meta
+          property="og:title"
+          content="Social Media Preview Working?"
         />
+        {/* <meta name="twitter:card" content="summary" /> */}
+        <meta
+          property="og:description"
+          content="Hurray!! Yes Social Media Preview is Working"
+        />
+        <meta property="og:image" content="https://user-images.githubusercontent.com/65443368/205997182-3c570ea2-5240-47e0-8c38-341db1d48af2.jpeg" />
       </Head>
       <NextNProgress
         color="#fd7200cf"
