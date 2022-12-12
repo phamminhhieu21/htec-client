@@ -48,6 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       )
     })
     .slice(0, 3)
+  
   console.log('relatedBlogs: ', relatedBlogs)
   return {
     props: {
@@ -315,15 +316,15 @@ export const BlogDetailPage: NextPage = ({
         <meta property="og:type" content="article" />
         <meta
           property="og:title"
-          content={title}
+          content="Lựa chọn nghề nghiệp - Project Manager, tất nhiên là khó hơn Dev!"
         />
         <meta
           property="og:description"
-          content={description_meta}
+          content="Rõ ràng khi bước 1 chân ra khỏi thế giới lập trình, thế giới kỹ thuật thì 1 + 1 sẽ thường không phải bằng 2 nữa"
         />
         <meta
           property="og:image"
-          content={img_meta}
+          content="https://user-images.githubusercontent.com/65443368/205997182-3c570ea2-5240-47e0-8c38-341db1d48af2.jpeg"
         />
       </Head>
       <NextNProgress
