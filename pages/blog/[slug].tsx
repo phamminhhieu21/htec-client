@@ -54,6 +54,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       blogData: blogDetail,
       relatedBlogs: relatedBlogs,
       labels: labels,
+      route : route,
       isLoading: false,
     },
   }
@@ -64,6 +65,7 @@ export const BlogDetailPage: NextPage = ({
   labels,
   isLoading,
   relatedBlogs,
+  route
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const Wrapped = styled.div`
     width: 100vw;
@@ -293,15 +295,15 @@ export const BlogDetailPage: NextPage = ({
   `
   const {author, bodyHTML, createdAt, title, id_blog, lastEdited} = blogData
   const {name: authorLogin, avatar: authorAvatarUrl, url: authorUrl} = author
-  let currentURL: string = `${URL_PROD}/blog/${id_blog}`
   let numberPost = 100
   const convertUrlToSlug = (url: string | undefined, title: string) => {
     const slug = toSlug(title)
     const id = url?.split('/')[url?.split('/').length - 1]
     return `${slug}-b-${id}`
   }
+  let currentURL: string = `${URL_PROD}/blog/${route}`
   const img_meta = document.getElementsByTagName('img')[1]?.src
-  const description_meta = document.getElementsByTagName('p')[1].innerText
+  const description_meta = document.getElementsByTagName('p')[1]?.innerText
   return (
     <Wrapped>
       <Head>
