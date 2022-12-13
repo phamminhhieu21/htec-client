@@ -1,5 +1,5 @@
 import React from 'react'
-import {NextPage, InferGetServerSidePropsType, GetServerSideProps} from 'next'
+import {NextPage, InferGetServerSidePropsType, GetServerSideProps , GetStaticProps , InferGetStaticPropsType, GetStaticPaths} from 'next'
 import {getBlogDetail, getLabels, getBlogs} from '../../server/blogs'
 import {BlogPost} from '../../model/blog'
 import {BlogHeader} from '../../components/BlogHeader'
@@ -31,8 +31,8 @@ const Share = dynamic(() => import('../../plugins/Facebook/Share'), {
   ssr: false,
 })
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const route: string[] | string | undefined = context.query.slug
+export const getStaticProps: GetStaticProps = async (context) => {
+  const route: string[] | string | undefined = context?.params?.slug
   const id_after_split = route?.toString().split('-')[
     route?.toString().split('-').length - 1
   ]
@@ -48,8 +48,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       )
     })
     .slice(0, 3)
-
-  console.log('relatedBlogs: ', relatedBlogs)
   return {
     props: {
       blogData: blogDetail,
@@ -60,6 +58,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   }
 }
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+
+  return {
+      paths: [], //indicates that no page needs be created at build time
+      fallback: 'blocking' //indicates the type of fallback
+  }
+}
 
 export const BlogDetailPage: NextPage = ({
   blogData,
@@ -67,7 +72,7 @@ export const BlogDetailPage: NextPage = ({
   isLoading,
   relatedBlogs,
   route,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+} : InferGetStaticPropsType<typeof getStaticProps>) => {
   const Wrapped = styled.div`
     width: 100vw;
     overflow: auto;
