@@ -1,8 +1,7 @@
 import '../styles/globals.css'
 import type {AppProps} from 'next/app'
 import {useState, useEffect} from 'react'
-// import dynamic from 'next/dynamic'
-// const  ComponentName = dynamic(() => import('../components/ComponentName'), { ssr: false })
+import Head from 'next/head'
 export default function App({Component, pageProps}: AppProps) {
   // const isSSR = typeof window === 'undefined'
   const [isSSR, setIsSSR] = useState(true)
@@ -10,5 +9,18 @@ export default function App({Component, pageProps}: AppProps) {
   useEffect(() => {
     setIsSSR(false)
   }, [])
-  return !isSSR && <Component {...pageProps} />
+  return (
+    !isSSR && (
+      <>
+        <Head>
+          <title>HTec</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
+        <Component {...pageProps} />
+      </>
+    )
+  )
 }
