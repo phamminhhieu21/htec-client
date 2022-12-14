@@ -2,7 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
-import {FcPortraitMode, FcGoogle, FcIdea, FcSettings} from 'react-icons/fc'
+import {FcGoogle} from 'react-icons/fc'
 import {FaAngellist} from 'react-icons/fa'
 const HeaderCpn = (props: any) => {
   const {avatarUrl} = props

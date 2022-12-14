@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import FooterCpn from '../components/FooterCpn'
 import HeaderCpn from '../components/HeaderCpn'
+import Header from '../components/Header'
 import NextNProgress from 'nextjs-progressbar'
 import {FcRules} from 'react-icons/fc'
 import {toSlug} from '../utils/helper'
@@ -213,6 +214,7 @@ const Home: NextPage = ({
         showOnShallow={true}
       />
       <main className="overflow-auto flex flex-col items-center bg-neutral-800 text-neutral-300 font-poppins">
+        <Header/>
         <HeaderCpn avatarUrl="https://avatars.githubusercontent.com/u/65443368?v=4" />
         <section className="flex flex-row items-center text-[1.15rem] mt-12 list-tag-custom">
           <div className="flex gap-3 mb-12 label-item">
