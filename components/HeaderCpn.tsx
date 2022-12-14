@@ -60,7 +60,7 @@ const HeaderCpn = (props: any) => {
       <section>
         <title>HTec</title>
         <div className="avatar-header">
-          {/* <img src={`${avatarUrl}`} alt="avatar-author" /> */}
+          <img src={`${avatarUrl}`} alt="avatar-author" />
         </div>
         <div>
           <div className="mt-3 text-center">
