@@ -91,7 +91,7 @@ const Header = () => {
     <Wrapped>
       <header className="sticky top-0 z-30 w-full px-2 py-4 bg-white sm:px-4 shadow-xl">
         <div className="flex items-center justify-center mx-auto max-w-7xl nav-custom">
-          <a href="#" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               className="w-9 logo-header"
               src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/null/external-Home-valentine-love-bearicons-outline-color-bearicons.png"

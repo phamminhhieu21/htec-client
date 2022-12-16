@@ -9,8 +9,7 @@ import {BlogPost, labelPost} from '../../model/blog'
 import styled from 'styled-components'
 import NextNProgress from 'nextjs-progressbar'
 import {toSlug} from '../../utils/helper'
-import { Wrapped } from './../../components/Tags/styled';
-
+import {Wrapped} from './../../components/Tags/styled'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
