@@ -271,7 +271,7 @@ export const BlogDetailPage: NextPage = ({
         width: 50%;
         border-radius: 8px;
         padding: 12px;
-        margin: 50px 0px 20px 0px;
+        margin: 35px 0px 20px 0px;
         background-color: white;
         @media screen and (max-width: 479px) {
           width: 94%;

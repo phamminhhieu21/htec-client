@@ -11,7 +11,6 @@ const HeaderCpn = (props: any) => {
       width: 18.75rem;
       height: 18.75rem;
       border-radius: 50%;
-      /* box-shadow: 0 6px 0 #e0d4d1; */
       box-shadow: 0 8px 18px #9ad0f3;
       border: 2px solid #4c036c;
       text-align: center;
@@ -21,13 +20,9 @@ const HeaderCpn = (props: any) => {
       overflow: hidden;
       transition: all 0.3s ease;
       @media screen and (max-width: 479px) {
-        width: 16.75rem;
-        height: 16.75rem;
-        margin-top: 3.8rem;
-      }
-      @media screen and (max-width: 329px) {
         width: 13.75rem;
         height: 13.75rem;
+        margin-top: 3.8rem;
       }
       img {
         width: 100%;

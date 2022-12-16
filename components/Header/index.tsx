@@ -65,7 +65,7 @@ const Header = () => {
         position: absolute;
         width: 100%;
         left: 0;
-        background-color: #9337e9b8;
+        background-color: #4b0091db;
         right: 0;
         transition: all 0.3s ease;
         li {
@@ -108,7 +108,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/">
+                <Link href="/blog">
                   <p className="px-4 py-2 font-medium text-gray-600 rounded menu-item-label flex item-center">
                     <FcIdea className="icon-menu-child mx-1 text-xl" /> Blogs
                   </p>
