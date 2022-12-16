@@ -108,14 +108,14 @@ export const BlogDetailPage: NextPage = ({
       @media screen and (max-width: 479px) {
         padding: 10px;
       }
-      header{
+      header {
         border-radius: 8px;
       }
       .menu-list-mobile {
         @media screen and (max-width: 767px) {
           background-color: #3a0070f7 !important;
           border: 2px solid #8f26f4ed;
-          border-radius : 12px;
+          border-radius: 12px;
         }
       }
       .detail-page-content__custom {
@@ -271,7 +271,7 @@ export const BlogDetailPage: NextPage = ({
         width: 50%;
         border-radius: 8px;
         padding: 12px;
-        margin: 50px 0px 20px 0px;
+        margin: 35px 0px 20px 0px;
         background-color: white;
         @media screen and (max-width: 479px) {
           width: 94%;

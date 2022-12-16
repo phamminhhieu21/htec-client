@@ -15,7 +15,7 @@ import {toSlug} from '../utils/helper'
 
 export const getServerSideProps: GetServerSideProps = async () => {
   let blogs: BlogPost[] = await getBlogs()
-  console.log(blogs)
+  // let new_blogs = blogs.slice(0, 3)
   let tags: string[] = []
   blogs.forEach((blog) => {
     for (const tag of blog.tags) {
@@ -214,7 +214,7 @@ const Home: NextPage = ({
         showOnShallow={true}
       />
       <main className="overflow-auto flex flex-col items-center bg-neutral-800 text-neutral-300 font-poppins">
-        <Header/>
+        <Header />
         <HeaderCpn avatarUrl="https://avatars.githubusercontent.com/u/65443368?v=4" />
         <section className="flex flex-row items-center text-[1.15rem] mt-12 list-tag-custom">
           <div className="flex gap-3 mb-12 label-item">
@@ -262,12 +262,12 @@ const Home: NextPage = ({
             <h2
               className="font-bold text-xl"
               style={{
-                fontWeight: 700,
-                color: '#8ef8d4',
-                textShadow: '1px 3px #3c70be',
+                fontWeight: 600,
+                color: '#8ef8d4db',
+                textShadow: '1px 2px #3c70beb0',
               }}
             >
-              Blogs <b>({filterBlog.length})</b>
+              Bài viết mới nhất ({filterBlog.length})
             </h2>
           </div>
           {filterBlog.map((blog: BlogPost) => {
@@ -296,6 +296,49 @@ const Home: NextPage = ({
               </div>
             )
           })}
+          {/* <div className="see-more">
+            <Link
+              href="/blog"
+              className="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group"
+            >
+              <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-600 group-hover:h-full" />
+              <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
+                <svg
+                  className="w-5 h-5 text-green-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </span>
+              <span className="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
+                <svg
+                  className="w-5 h-5 text-green-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </span>
+              <span className="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">
+                Xem thêm bài viết
+              </span>
+            </Link>
+          </div> */}
         </section>
         <FooterCpn />
       </main>
