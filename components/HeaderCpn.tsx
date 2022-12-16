@@ -22,7 +22,6 @@ const HeaderCpn = (props: any) => {
       @media screen and (max-width: 479px) {
         width: 13.75rem;
         height: 13.75rem;
-        margin-top: 3.8rem;
       }
       img {
         width: 100%;
